@@ -41,4 +41,11 @@ public class TransactionServiceImpl implements TransactionService {
         }
     }
 
+    @Override
+    public void clearTransactions() {
+        log.info("Total {} transactions.", transactions.size());
+        transactions.clear();
+        log.info("All transactions were clear.");
+    }
+
 }

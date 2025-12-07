@@ -5,4 +5,5 @@ import com.diohen.translytics.model.dto.PostTransactionDTO;
 
 public interface TransactionService {
     void addTransaction(Transaction transaction);
+    void clearTransactions();
 }

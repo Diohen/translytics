@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/transaction")
+@RequestMapping("/api/v1")
 public class TransactionController {
 
     private final TransactionService transactionService;
@@ -17,7 +17,7 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping
+    @PostMapping("/transaction")
     @ResponseStatus(HttpStatus.CREATED)
     public void receiveTransaction(@RequestBody PostTransactionDTO postTransaction) {
         transactionService.addTransaction(
@@ -26,5 +26,11 @@ public class TransactionController {
                         postTransaction.transactionDateTime()
                 )
         );
+    }
+
+    @DeleteMapping("/transactions")
+    @ResponseStatus(HttpStatus.OK)
+    public void clearTransactions() {
+        transactionService.clearTransactions();
     }
 }
