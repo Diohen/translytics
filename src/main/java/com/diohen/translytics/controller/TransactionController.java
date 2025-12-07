@@ -1,6 +1,7 @@
 package com.diohen.translytics.controller;
 
 import com.diohen.translytics.model.Transaction;
+import com.diohen.translytics.model.dto.GetStatisticsDTO;
 import com.diohen.translytics.model.dto.PostTransactionDTO;
 import com.diohen.translytics.service.TransactionService;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,11 @@ public class TransactionController {
     @ResponseStatus(HttpStatus.OK)
     public void clearTransactions() {
         transactionService.clearTransactions();
+    }
+
+    @GetMapping("/statistics/{lastPeriod}")
+    @ResponseStatus(HttpStatus.OK)
+    public GetStatisticsDTO getStatisticsForLastMinutes(@PathVariable long lastPeriod) {
+        return transactionService.getStatisticsForLastMinutes(lastPeriod);
     }
 }
